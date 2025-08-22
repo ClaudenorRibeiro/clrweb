@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ titulo|default:"Pessoa" }} - CLRWEB</title>
+</head>
+<body>
+  <h2>{{ titulo|default:"Pessoa" }}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Salvar</button>
+    <a href="{% url 'pessoas_list' %}">Cancelar</a>
+  </form>
+</body>
+</html>

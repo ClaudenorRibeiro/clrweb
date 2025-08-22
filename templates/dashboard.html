@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - CLRWEB</title>
+</head>
+<body>
+  <h2>Bem-vindo ao CLRWEB</h2>
+
+  <p>Você está logado como: <strong>{{ request.user.username }}</strong>
+     {% if request.user.is_authenticated %} (perfil: {{ request.user.get_perfil_display }}){% endif %}</p>
+
+  <p><a href="{% url 'logout' %}">Sair</a></p>
+  <p><a href="{% url 'pessoas_list' %}">📇 Ir para Pessoas</a></p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pessoas - CLRWEB</title>
+  </head>
+  <body>
+    <h2>Pessoas</h2>
+    <p>
+      <a href="{% url 'pessoas_create' %}">➕ Nova Pessoa</a>
+    </p>
+    {% if pessoas %}
+      <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Documento</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Criado em</th>
+            <th>Ações</th> <!-- 👈 nova coluna -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in pessoas %}
+            <tr>
+              <td>{{ p.nome }}</td>
+              <td>{{ p.get_tipo_display }}</td>
+              <td>{{ p.documento }}</td>
+              <td>{{ p.email }}</td>
+              <td>{{ p.telefone }}</td>
+              <td>{{ p.criado_em|date:'d/m/Y H:i' }}</td>
+              <td>
+                {% if request.user.perfil in 'ADMIN,ADV' %}
+                  <a href="{% url 'pessoas_edit' p.id %}">Editar</a> |
+                  <a href="{% url 'pessoas_delete' p.id %}">Excluir</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>Nenhuma pessoa cadastrada ainda.</p>
+    {% endif %}
+
+    <p>
+      <a href="{% url 'dashboard' %}">Voltar ao Dashboard</a> |
+      <a href="/admin/core/pessoa/add/">Cadastrar pelo Admin</a>
+    </p>
+  </body>
+</html>
