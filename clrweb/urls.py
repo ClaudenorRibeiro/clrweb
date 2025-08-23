@@ -23,5 +23,5 @@ urlpatterns = [
     path("login/", login_view, name="login"),
     path("logout/", logout_view, name="logout"),
     path("", dashboard, name="dashboard"),  # página inicial aponta pro dashboard
-    path("", include("core.urls")),
+    # path("", include("core.urls")),
 ]
